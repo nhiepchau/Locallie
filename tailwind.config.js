@@ -6,6 +6,9 @@ module.exports = {
 			white: "#FFFFFF",
 			gray: "#A7ADB7",
 			bg: "#F5F7F9",
+			red: {
+				normal: "#DF083D",
+			},
 			primary: {
 				darker: "#252525",
 				dark: "#007F6D",
@@ -32,7 +35,7 @@ module.exports = {
 		extend: {
 			fontSize: {
 				title1: [
-					"22px",
+					"20px",
 					{
 						lineHeight: "28px",
 					},
@@ -42,6 +45,12 @@ module.exports = {
 					{
 						lineHeight: "20px",
 					},
+				],
+				xnormal: [
+					"16px",
+					{
+						lineHeight: "18px",
+					}
 				],
 				xsmall: [
 					"12px",

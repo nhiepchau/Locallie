@@ -20,16 +20,16 @@ const HomeScreen = ({ navigation }) => {
 
 	const categories = [
 		"All",
-		"Planting",
-		"Wall Painting",
-		"Cleanup",
+		"Adventure",
+		"Slow paced",
+		"Historical",
 		"Collect",
 		"Workshop",
 	]
 
 	return (
 		<Layout statusBarBgColor={theme.colors.primary.darker}>
-			<ScrollView refreshing={false}>
+			<ScrollView refreshing={false} className='bg-white'>
 				<Section className="flex-1 py-5 bg-white shadow-md shadow-ink-light">
 					<MainInput
 						placeholder={"Where do you want to go today?"}
@@ -58,11 +58,8 @@ const HomeScreen = ({ navigation }) => {
 						}
 					/>
 				</Section>
-				<Section className="flex-1 mt-5">
+				<Section className="flex-1 mt-5 mb-3">
 					<TourSection />
-				</Section>
-				<Section className="flex-1">
-					<BuddySection />
 				</Section>
 			</ScrollView>
 		</Layout>

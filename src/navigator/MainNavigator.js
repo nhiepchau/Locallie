@@ -15,20 +15,6 @@ import HomeNavigator from "./HomeNavigator.js"
 const Tab = createBottomTabNavigator()
 
 const MainNavigator = () => {
-	const dispatch = useDispatch()
-
-	useEffect(() => {
-		;(async () => {
-			let { status } = await Location.requestForegroundPermissionsAsync()
-			if (status !== "granted") {
-				//setErrorMsg("Permission to access location was denied")
-				return
-			}
-
-			let location = await Location.getCurrentPositionAsync({})
-			dispatch(locationSlice.actions.setLocation(location))
-		})()
-	}, [])
 	const routes = {
 		Home: "home",
 		Discovery: "search",
@@ -42,7 +28,7 @@ const MainNavigator = () => {
 					tabBarIcon: ({ color, size }) => (
 						<FontAwesome name={routes[route.name]} size={size} color={color} />
 					),
-					tabBarActiveTintColor: theme.colors.primary.normal,
+					tabBarActiveTintColor: theme.colors.red.normal,
 					tabBarInactiveTintColor: "gray",
 					headerShown: false,
 				})}
