@@ -47,6 +47,8 @@ const WhenCustom = () => {
                     onDateChange={onDateChange}    
                     previousTitle="Prev"
                     nextTitle="Next"
+                    selectedDayColor="#222222"
+                    selectedDayTextColor="white"
                 />
                 </View>
             </View>
