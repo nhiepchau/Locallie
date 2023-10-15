@@ -17,7 +17,7 @@ const TripType = [
     },
     {
         typeId: 5,
-        tripType: 'Slow paced'
+        tripType: 'Relax'
     },
     {
         typeId: 6,
@@ -42,6 +42,10 @@ const TripType = [
     {
         typeId: 11,
         tripType: 'Luxury'
+    },
+    {
+        typeId: 12,
+        tripType: 'Cultural'
     }
 ]
 

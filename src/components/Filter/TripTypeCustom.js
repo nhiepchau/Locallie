@@ -2,9 +2,12 @@ import { View, Text, TouchableOpacity, FlatList } from "react-native"
 import { useState } from "react"
 import TripType from "./TripType"
 import SecondBadge from "../Badge/SecondBadge"
+import { useDispatch, useSelector } from "react-redux"
+import { setTripType } from "../../redux/reducers/tripTypeSlice"
 
 const TripTypeCustom = () => {
-    const [tripType, setTripType] = useState([])
+    const tripType = useSelector((state) => state.tripType)
+    const dispatch = useDispatch()
     const [visible, setVisible] = useState(false)
 
     let typeList = []
@@ -14,9 +17,9 @@ const TripTypeCustom = () => {
         if ((index % 3 == 0 && index != 0) || index == TripType.length - 1) {
             temp.push((<SecondBadge isSelected={tripType.includes(element.tripType)} onPress={() => {
                 if (!tripType.includes(element.tripType)) {
-                    setTripType(tripType.concat([element.tripType]))
+                    dispatch(setTripType(`${tripType.replace("I'm all in", "")} ${element.tripType}`))
                 } else {
-                    setTripType(tripType.filter(x => x == element.tripType))
+                    dispatch(setTripType(tripType.replace(element.tripType, "")))
                 }
             }} value={element.tripType} />))
             typeList.push((<View className='flex-row gap-x-2'>{temp}</View>))
@@ -24,9 +27,9 @@ const TripTypeCustom = () => {
         } else {
             temp.push((<SecondBadge isSelected={tripType.includes(element.tripType)} onPress={() => {
                 if (!tripType.includes(element.tripType)) {
-                    setTripType(tripType.concat([element.tripType]))
+                    dispatch(setTripType(`${tripType.replace("I'm all in", "")} ${element.tripType}`))
                 } else {
-                    setTripType(tripType.filter(x => x == element.tripType))
+                    dispatch(setTripType(tripType.replace(element.tripType, "")))
                 }
             }} value={element.tripType} />))
         }
@@ -37,7 +40,7 @@ const TripTypeCustom = () => {
         <View className='mb-12'>
             <TouchableOpacity onPress={() => setVisible(!visible)} className='flex-row justify-between rounded-2xl shadow shadow-gray border-2 border-ink-normal bg-white px-3 py-4 mt-3'>
                 <Text className='text-small text-ink-light'>Trip Type</Text>
-                <Text className='text-small text-dark-darker font-semibold'>{tripType.join(', ')}</Text>
+                <Text className='text-small text-dark-darker font-semibold'>{tripType}</Text>
             </TouchableOpacity>
             <View style={{ display: visible ? 'block' : 'none' }} className='rounded-2xl shadow-md shadow-gray bg-white px-3 py-4 mt-3'>
                 <Text className='text-title1 font-semibold mb-4'>Trip Type</Text>

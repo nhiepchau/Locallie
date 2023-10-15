@@ -1,17 +1,18 @@
-import { View, Text } from "react-native"
+import { ScrollView, Text } from "react-native"
+import { TourList } from "../Tour/TourList"
+import VerticalList from "../List/VerticalList"
+import { useRoute } from "@react-navigation/native"
+import TourCard from "../Tour/TourCard"
 
 const EventReward = () => {
+	const route = useRoute()
+	const guideId = route.params.id
+
 	return (
-		<View className="h-full bg-white px-2 pt-5">
-			<Text className="font-semibold text-normal">Benefits</Text>
-			<View className="mt-3 bg-primary-lighter rounded border-primary-light border-primary py-2 px-3">
-				<Text className="font-semibold text-small">Point</Text>
-				<View className="flex flex-row gap-x-5 mt-3">
-					<Text className="text-small text-primary-normal">2 social days</Text>
-					<Text className="text-small text-primary-normal">100 points</Text>
-				</View>
-			</View>
-		</View>
+		<ScrollView className="h-full bg-white px-2 pt-5 pb-10">
+			<Text className="font-semibold text-normal">My Available Tours</Text>
+			<VerticalList Item={TourCard} data={TourList.filter(x => x.tourguideId == guideId).slice(0, 5)} />
+		</ScrollView>
 	)
 }
 

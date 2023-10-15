@@ -6,6 +6,8 @@ import EventOverview from "../components/Event/EventOverview"
 import EventReview from "../components/Event/EventReview"
 import EventReward from "../components/Event/EventReward"
 import { useRoute } from "@react-navigation/native"
+import { TourGuideList } from "../components/Tour/TourList"
+import GuideHighLight from "../components/TourGuide/GuideHighLight"
 
 const event = {
 	title: "Plant for future",
@@ -26,17 +28,14 @@ const Tab = createMaterialTopTabNavigator()
 
 const DetailScreen = () => {
 	const route = useRoute()
-	const eventId = route.params.eventId
-	const image = route.params.image
+	const tourguideId = route.params.guideId
+
+	const tourguide = TourGuideList.find(x => x.tourguideId == tourguideId)
 
 	return (
 		<Layout>
-			<View className="flex-1 pt-32 bg-white">
-				<Image
-					className="w-full h-1/3 absolute"
-					source={{uri: image}}
-				></Image>
-				<EventHighLight eventId={eventId}></EventHighLight>
+			<View className="flex-1 pt-8 bg-white">
+				<GuideHighLight guideId={tourguideId}></GuideHighLight>
 				<Tab.Navigator
 					className="mx-4"
 					screenOptions={{
@@ -48,9 +47,9 @@ const DetailScreen = () => {
 					<Tab.Screen
 						name="OVERVIEW"
 						component={EventOverview}
-						initialParams={{ id: eventId }}
+						initialParams={{ id: tourguideId }}
 					/>
-					<Tab.Screen name="REWARD" component={EventReward} />
+					<Tab.Screen name="TOURS" component={EventReward} initialParams={{ id: tourguideId }} />
 					<Tab.Screen name="REVIEW" component={EventReview} />
 				</Tab.Navigator>
 			</View>

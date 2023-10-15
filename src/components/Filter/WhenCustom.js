@@ -3,12 +3,14 @@ import { useState } from "react"
 import moment from "moment"
 import CalendarPicker from "react-native-calendar-picker"
 import { useDispatch, useSelector } from "react-redux"
-import { addRangeDate } from "../../redux/reducers/timelineSlice"
+import { actStartDate } from "../../redux/reducers/startDateSlice"
+import { actEndDate } from "../../redux/reducers/endDateSlice"
 
 const WhenCustom = () => {
-    const [startDate, setStartDate] = useState(Date.now())
-    const [endDate, setEndDate] = useState(null)
+    const startDate = useSelector((state) => state.startDate)
+    const endDate = useSelector((state) => state.endDate)
     const [visible, setVisible] = useState(false)
+    const dispatch = useDispatch()
 
     const convertTimeline = (startDate, endDate) => {
         if (endDate == null) {
@@ -23,9 +25,9 @@ const WhenCustom = () => {
     const onDateChange = (date, type) => {
         console.log('Date ', date)
         if (type === 'END_DATE') {
-            setEndDate(date)
+            dispatch(actEndDate(date.toString()))
         } else {
-            setStartDate(date)
+            dispatch(actStartDate(date.toString()))
         }
     }
 

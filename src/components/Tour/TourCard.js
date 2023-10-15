@@ -3,6 +3,8 @@ import { TouchableOpacity } from "react-native"
 import { Ionicons } from "@expo/vector-icons"
 import moment from "moment"
 import { useNavigation } from "@react-navigation/native"
+import FilledButton from "../Button/FilledButton"
+import OutlinedButton from "../Button/OutlinedButton"
 
 const TourCard = ({
     packageId,
@@ -15,19 +17,14 @@ const TourCard = ({
     endDate,
     price,
     rating,
-    numberOfRating
+    numberOfRating,
+    tourguideId
 }) => {
     const navigation = useNavigation()
 
     return (
         <TouchableOpacity
             className="rounded-primary"
-            onPress={() =>
-                navigation.navigate("DetailScreen", {
-                    eventId: packageId,
-                    image: imageUrl
-                })
-            }
         >
             <View className='rounded-primary'>
                 <Image source={{uri: imageUrl}} className="rounded-primary" resizeMethod="scale" aspectRatio={1} />
@@ -43,12 +40,22 @@ const TourCard = ({
                         <Text className='text-xnormal text-ink-light'> ({numberOfRating})</Text>
                     </Text>
                 </View>
-                <Text className='text-small text-ink-light'>{duration} hours - {travelType}</Text>
-                <Text className='text-small text-ink-light'>{moment(startDate).utc().format("ddd, MMM DD")} - {moment(endDate).utc().format("ddd, MMM DD")}</Text>
-                <Text className='text-small'>
-                    <Text className='font-bold text-dark-darker'>${price}</Text>
-                    <Text className='text-ink-light'> total</Text>
-                </Text>
+            
+                <View className='flex-row justify-between'>
+                    <View>
+                        <Text className='text-small text-ink-light'>{duration} hours - {travelType}</Text>
+                        <Text className='text-small text-ink-light'>{moment(startDate).utc().format("ddd, MMM DD")} - {moment(endDate).utc().format("ddd, MMM DD")}</Text>
+                        <Text className='text-small'>
+                            <Text className='font-bold text-dark-darker'>${price}</Text>
+                            <Text className='text-ink-light'> total</Text>
+                        </Text>
+                    </View>
+                    <OutlinedButton title={'LOCAL BUDDY'} onPress={() =>
+                        navigation.navigate("DetailScreen", {
+                            guideId: tourguideId
+                        })
+                    } />
+                </View>
             </View>
         </TouchableOpacity>
     )

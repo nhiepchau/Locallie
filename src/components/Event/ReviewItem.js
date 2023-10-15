@@ -6,6 +6,7 @@ const ReviewItem = ({ avatar, user, rating, comment, postedTime }) => {
 		<View className="bg-cloud-light rounded-md p-3 mb-3">
 			<View className="flex-row justify-between">
 				<View className="flex-row gap-x-3">
+					<Image className='w-[60px] h-[60px] rounded-full' source={{uri: avatar}} />
 					<View className="my-auto">
 						<Text className="text-small font-semibold">{user}</Text>
 						<Text className="text-ink-light">{postedTime}</Text>
